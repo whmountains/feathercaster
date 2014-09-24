@@ -5,7 +5,24 @@ var  initScheduler = function () {
                 prevent_cache:true,
                 date:new Date(),
                 mode:"week",
-                hour_size_px: 100
+                hour_size_px: 100,
+                lightbox: {
+                  sections: [
+                    {
+                      "name":"description",
+                      "height":200,
+                      "map_to":"text",
+                      "type":"textarea",
+                      "focus":true
+                    },
+                    {
+                      "name":"time",
+                      "height":72,
+                      "type":"time",
+                      "map_to":"auto"
+                    }
+                  ]
+                }
             });
 
             scheduler.attachEvent("onEventAdded", function(id,ev){

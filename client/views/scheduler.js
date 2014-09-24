@@ -29,13 +29,15 @@ Template.scheduler.rendered = function(){
 
     Meteor.subscribe("events");
     Meteor.autorun(function(){
-        var evs = Meteor.events.find().fetch();
-        var load = [];
-        $.each( evs, function(i, e){
-        load[i] = {id:e._id,start_date:e.start_date,end_date:e.end_date,text:e.text} ;
+
+        // Get the list of events from the db
+        var events = Meteor.events.find().fetch();
+
+        _.each(events, function(element) {
+          element.id = element._id;
         });
         scheduler.clearAll();
-        scheduler.parse(load, 'json');
+        scheduler.parse(events, 'json');
     });
 
 };

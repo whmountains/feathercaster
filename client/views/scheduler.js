@@ -1,3 +1,22 @@
+var timeDatepickerPrecise = {
+  render: function(sns) {
+    // sns - section configuration object
+    return 'test';
+  },
+  set_value: function(node, value, ev) {
+    //node - html object related to html defined above
+    //value - value defined by map_to property
+    //ev - event object
+  },
+  get_value: function(node, ev) {
+    //node - html object related to html defined above
+    //event object
+  },
+  focus: function(node) {
+    //node - html object related to html defined above
+  }
+};
+
 var  initScheduler = function () {
 
             $("#scheduler").dhx_scheduler({

@@ -38,3 +38,5 @@ Template.scheduler.rendered = function(){
     });
 
 };
+
+throw 'myexception';

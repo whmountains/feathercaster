@@ -1,10 +1,11 @@
 var  initScheduler = function () {
 
-            $(".scheduler-1").dhx_scheduler({
+            $("#scheduler").dhx_scheduler({
                 xml_date:"%Y-%m-%d %H:%i",
                 prevent_cache:true,
                 date:new Date(),
-                mode:"month"
+                mode:"week",
+                hour_size_px: 100
             });
 
             scheduler.attachEvent("onEventAdded", function(id,ev){

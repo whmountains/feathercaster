@@ -11,6 +11,7 @@ var  initScheduler = function () {
             scheduler.attachEvent("onEventAdded", function(id,ev){
                 Meteor.call("insert", ev, function(error, event_id) {
                 });
+                console.log('test');
             });
             scheduler.attachEvent("onEventChanged", function(id,ev){
                 Meteor.call("update", ev, function(error, event_id) {
@@ -38,5 +39,3 @@ Template.scheduler.rendered = function(){
     });
 
 };
-
-throw 'myexception';

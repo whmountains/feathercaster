@@ -1,6 +1,6 @@
 var  initScheduler = function () {
 
-            $(".myscheduler").dhx_scheduler({
+            $(".scheduler-1").dhx_scheduler({
                 xml_date:"%Y-%m-%d %H:%i",
                 prevent_cache:true,
                 date:new Date(),
@@ -22,8 +22,10 @@ var  initScheduler = function () {
 };
 Template.scheduler.rendered = function(){
 
+    //load the scheduler
     initScheduler();
-    Meteor.subscribe("jobs");
+
+    Meteor.subscribe("events");
     Meteor.autorun(function(){
         var evs = Meteor.events.find().fetch();
         var load = [];

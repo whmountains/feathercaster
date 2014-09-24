@@ -1,4 +1,4 @@
-Meteor.publish("jobs", function () {
+Meteor.publish("events", function () {
 
     return Meteor.events.find({});
 

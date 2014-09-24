@@ -1,80 +1,35 @@
-// var timeDatepickerPrecise = {
-//   render: function(sns) {
-//     // sns - section configuration object
-//     return 'test';
-//   },
-//   set_value: function(node, value, ev) {
-//     //node - html object related to html defined above
-//     //value - value defined by map_to property
-//     //ev - event object
-//   },
-//   get_value: function(node, ev) {
-//     //node - html object related to html defined above
-//     //event object
-//   },
-//   focus: function(node) {
-//     //node - html object related to html defined above
-//   }
-// };
+initScheduler = function(ref) {
+  scheduler.config.xml_date="%Y-%m-%d %H:%i";
+  scheduler.config.prevent_cache = true;
+  var schedulerRef = ref.attachScheduler(null, 'week');
 
-var  initScheduler = function () {
+  //subscribe to the db
+  Meteor.subscribe("events");
 
-            $("#scheduler").dhx_scheduler({
-                xml_date:"%Y-%m-%d %H:%i",
-                prevent_cache:true,
-                date:new Date(),
-                mode:"week",
-                hour_size_px: 100,
-                time_step: 0.1,
-                lightbox: {
-                  sections: [
-                    {
-                      "name":"description",
-                      "height":200,
-                      "map_to":"text",
-                      "type":"textarea",
-                      "focus":true
-                    },
-                    {
-                      "name":"time",
-                      "height":72,
-                      "type":"time",
-                      "map_to":"auto"
-                    }
-                  ]
-                }
-            });
+  // set up a computation that updates the scheduler
+  Tracker.autorun(function(){
+    // Get the list of events from the db
+    var events = Meteor.events.find().fetch();
 
-            scheduler.attachEvent("onEventAdded", function(id,ev){
-                Meteor.call("insert", ev, function(error, event_id) {
-                });
-                console.log('test');
-            });
-            scheduler.attachEvent("onEventChanged", function(id,ev){
-                Meteor.call("update", ev, function(error, event_id) {
-                });
-            });
-            scheduler.attachEvent("onEventDeleted", function(id){
-                Meteor.call("delete", id, function(error, event_id) {
-                });
-            });
-};
-Template.scheduler.rendered = function(){
-
-    //load the scheduler
-    initScheduler();
-
-    Meteor.subscribe("events");
-    Meteor.autorun(function(){
-
-        // Get the list of events from the db
-        var events = Meteor.events.find().fetch();
-
-        _.each(events, function(element) {
-          element.id = element._id;
-        });
-        scheduler.clearAll();
-        scheduler.parse(events, 'json');
+    //translate the element.id
+    _.each(events, function(element) {
+      element.id = element._id;
     });
+    scheduler.clearAll();
+    scheduler.parse(events, 'json');
+  });
 
+  //setup events to do save things back to the db
+  scheduler.attachEvent("onEventAdded", function(id,ev){
+    Meteor.call("insert", ev, function(error, event_id) {
+    });
+  });
+  scheduler.attachEvent("onEventChanged", function(id,ev){
+    Meteor.call("update", ev, function(error, event_id) {
+    });
+  });
+  scheduler.attachEvent("onEventDeleted", function(id){
+    Meteor.call("delete", id, function(error, event_id) {
+    });
+  });
 };

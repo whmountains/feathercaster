@@ -24,12 +24,12 @@ initFileTree = function(paneRef) {
       _.each(files, function(element, i) {
 
         // translate the _id
-        var idString = element._id.toString();
+        var idString = element._id.valueOf();
 
         //translate the parent id
         var parentId;
         if (element.parent !== undefined) {
-          parentId = element.parent.toString();
+          parentId = element.parent.valueOf();
         }
         else{
           parentId = 0;

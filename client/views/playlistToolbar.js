@@ -18,7 +18,7 @@ initPlaylistToolbar = function(paneRef) {
 
   //subscribe to the playlists collection
   Meteor.subscribe('playlists', function() {
-    
+
     //clear the elements from the dropdown list and replace them with the
     //new list of playlists everytime that list changes
     Tracker.autorun(function(){
@@ -30,13 +30,20 @@ initPlaylistToolbar = function(paneRef) {
       });
 
       // get the list of playlists from the db
+      // and send add them as options in the playlist chooser
       var playlistsList = playlistsCollection.find({}, {name: 1}).fetch();
       _.each(playlistsList, function(playlist, position){
         //convert the id to a string
-        var playlistID = playlist._id.toString();
+        var playlistID = playlist._id.valueOf();
         //add the playlist to the list
-        toolBarRef.addListOption(tbIDs.plistChoose, position, position, 'button', playlist.name);
+        toolBarRef.addListOption(tbIDs.plistChoose, playlistID, position, 'button', playlist.name);
       });
+    });
+
+    //set up event handelers to switch playlists when a click is recieved
+    toolBarRef.attachEvent("onClick", function(id) {
+      var playlistID = new Mongo.ObjectID(id);
+      Session.set('openPlaylistID', playlistID);
     });
   });
 };

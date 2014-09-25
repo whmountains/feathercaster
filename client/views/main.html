@@ -23,19 +23,20 @@
       pageLayout.cells("a").setWidth(250); //the method takes a number without 'px'
       pageLayout.cells("b").setWidth(250);
 
-      //hide the headers
+      //hide/set the headers
       pageLayout.cells("a").setText('Archivos');
-      pageLayout.cells("b").setText('Lista de Reproducion');
+      pageLayout.cells("b").hideHeader();
       pageLayout.cells("c").hideHeader();
 
       //Init the tree
       initFileTree(pageLayout.cells('a'));
 
       //Init the playlist chooser
+      //(there might be problems if this were moved to after the init playlist grid part)
       initPlaylistToolbar(pageLayout.cells('b'));
 
       //Init the playlist table
-      //initPlaylistGrid(pageLayout.cells('b'));
+      initPlaylistGrid(pageLayout.cells('b'));
 
       //Init the scheduler
       initScheduler(pageLayout.cells('c'));

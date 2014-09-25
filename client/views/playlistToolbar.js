@@ -1,16 +1,20 @@
 initPlaylistToolbar = function(paneRef) {
 
   //list the id's for each toolbar element
-  var tbIDs = {
-    'plistChoose': 1
+  ptbIDs = {
+    'plistChoose': 1,
+    'plistNew': 2
   };
 
   // create a blank toolbar
   toolBarRef = paneRef.attachToolbar();
 
-  //add an item to the toolbar
+  // tell it where to find it's icons
+  toolBarRef.setIconsPath("dhx_skins/skyblue/imgs/dhxtoolbar_skyblue");
+
+  //add the playlist chooser to the toolbar
   toolBarRef.addButtonSelect(
-    tbIDs.plistChoose, 0,
+    ptbIDs.plistChoose, 0,
     'Change Playlist', [],
     null, null,
     'disabled', true
@@ -23,7 +27,7 @@ initPlaylistToolbar = function(paneRef) {
     //new list of playlists everytime that list changes
     Tracker.autorun(function(){
 
-      var originalOptions = toolBarRef.getAllListOptions(tbIDs);
+      var originalOptions = toolBarRef.getAllListOptions(ptbIDs);
       _.each(originalOptions, function(option){
         console.dir(option);
         //remove the item
@@ -36,7 +40,7 @@ initPlaylistToolbar = function(paneRef) {
         //convert the id to a string
         var playlistID = playlist._id.valueOf();
         //add the playlist to the list
-        toolBarRef.addListOption(tbIDs.plistChoose, playlistID, position, 'button', playlist.name);
+        toolBarRef.addListOption(ptbIDs.plistChoose, playlistID, position, 'button', playlist.name);
       });
     });
 

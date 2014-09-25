@@ -1,4 +1,4 @@
-Meteor.events = new Meteor.Collection('events');
+eventsCollection = new Meteor.Collection('events');
 
 Meteor.methods({
         'insert': function(ev) {

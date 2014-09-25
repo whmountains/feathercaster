@@ -1,5 +1,11 @@
 Meteor.publish("events", function () {
+    return eventsCollection.find();
+});
 
-    return Meteor.events.find({});
+Meteor.publish("files", function() {
+  return filesCollection.find();
+});
 
+Meteor.publish("playlists", function() {
+  return playlistsCollection.find();
 });

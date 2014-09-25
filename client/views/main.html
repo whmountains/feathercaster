@@ -13,19 +13,32 @@
   <script>
     dhtmlxEvent(window,"load",function(){
 
+      //Set Session default vars
+      Session.setDefault('openPlaylistID', null);
+
       //Init the layout
-      pageLayout = new dhtmlXLayoutObject(document.body,"2U");
+      pageLayout = new dhtmlXLayoutObject(document.body,"3W");
+
+      // set the dimentions
       pageLayout.cells("a").setWidth(250); //the method takes a number without 'px'
-      pageLayout.cells("a").hideHeader();
-      pageLayout.cells("b").hideHeader();
+      pageLayout.cells("b").setWidth(250);
+
+      //hide the headers
+      pageLayout.cells("a").setText('Archivos');
+      pageLayout.cells("b").setText('Lista de Reproducion');
+      pageLayout.cells("c").hideHeader();
 
       //Init the tree
-      var myTree = pageLayout.cells("a").attachTree();
-      myTree.setImagesPath("dhxtree_skyblue/");
-      myTree.loadXML("treeTestData.xml");
+      initFileTree(pageLayout.cells('a'));
+
+      //Init the playlist chooser
+      initPlaylistToolbar(pageLayout.cells('b'));
+
+      //Init the playlist table
+      //initPlaylistGrid(pageLayout.cells('b'));
 
       //Init the scheduler
-      initScheduler(pageLayout.cells('b'));
+      initScheduler(pageLayout.cells('c'));
 
     });
   </script>

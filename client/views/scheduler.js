@@ -1,7 +1,7 @@
-initScheduler = function(ref) {
+initScheduler = function(paneRef) {
   scheduler.config.xml_date="%Y-%m-%d %H:%i";
   scheduler.config.prevent_cache = true;
-  var schedulerRef = ref.attachScheduler(null, 'week');
+  var schedulerRef = paneRef.attachScheduler(null, 'day');
 
   //subscribe to the db
   Meteor.subscribe("events");
@@ -9,7 +9,7 @@ initScheduler = function(ref) {
   // set up a computation that updates the scheduler
   Tracker.autorun(function(){
     // Get the list of events from the db
-    var events = Meteor.events.find().fetch();
+    var events = eventsCollection.find().fetch();
 
     //translate the element.id
     _.each(events, function(element) {

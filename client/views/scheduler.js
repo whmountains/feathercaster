@@ -10,11 +10,7 @@ initScheduler = function(paneRef) {
   Tracker.autorun(function(){
     // Get the list of events from the db
     var events = eventsCollection.find().fetch();
-
-    //translate the element.id
-    // _.each(events, function(element) {
-    //   element._id = element._id;
-    // });
+    
     scheduler.clearAll();
     scheduler.parse(events, 'json');
   });

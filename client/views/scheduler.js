@@ -12,24 +12,24 @@ initScheduler = function(paneRef) {
     var events = eventsCollection.find().fetch();
 
     //translate the element.id
-    _.each(events, function(element) {
-      element.id = element._id;
-    });
+    // _.each(events, function(element) {
+    //   element._id = element._id;
+    // });
     scheduler.clearAll();
     scheduler.parse(events, 'json');
   });
 
   //setup events to do save things back to the db
-  scheduler.attachEvent("onEventAdded", function(id,ev){
-    Meteor.call("eventsInsert", ev, function(error, event_id) {
+  scheduler.attachEvent("onEventAdded", function(eventID, eventObj){
+    Meteor.call("eventsInsert", eventObj, function(error, eventID) {
     });
   });
-  scheduler.attachEvent("onEventChanged", function(id,ev){
-    Meteor.call("eventsUpdate", ev, function(error, event_id) {
+  scheduler.attachEvent("onEventChanged", function(eventID,eventObj){
+    Meteor.call("eventsUpdate", eventObj, function(error, eventID) {
     });
   });
-  scheduler.attachEvent("onEventDeleted", function(id){
-    Meteor.call("eventsDelete", id, function(error, event_id) {
+  scheduler.attachEvent("onEventDeleted", function(eventID){
+    Meteor.call("eventsDelete", eventID, function(error, eventID) {
     });
   });
 };

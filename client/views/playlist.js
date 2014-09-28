@@ -26,9 +26,9 @@ initPlaylistGrid = function(paneRef) {
       var openPlaylistID = Session.get('openPlaylistID');
 
       //is there a playlist selected, or do we need to just clear the ui
-      if (openPlaylistID === 'null') {
+      if (openPlaylistID === null) {
         //reset the playlist selector dropdown
-        toolBarRef.setItemText('Choose Playlist');
+        toolBarRef.setItemText(ptbIDs.plistChoose, 'Choose Playlist');
         //clear the existing data from the grid
         gridRef.clearAll();
       }

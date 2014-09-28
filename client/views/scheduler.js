@@ -21,15 +21,15 @@ initScheduler = function(paneRef) {
 
   //setup events to do save things back to the db
   scheduler.attachEvent("onEventAdded", function(id,ev){
-    Meteor.call("insert", ev, function(error, event_id) {
+    Meteor.call("eventsInsert", ev, function(error, event_id) {
     });
   });
   scheduler.attachEvent("onEventChanged", function(id,ev){
-    Meteor.call("update", ev, function(error, event_id) {
+    Meteor.call("eventsUpdate", ev, function(error, event_id) {
     });
   });
   scheduler.attachEvent("onEventDeleted", function(id){
-    Meteor.call("delete", id, function(error, event_id) {
+    Meteor.call("eventsDelete", id, function(error, event_id) {
     });
   });
 };

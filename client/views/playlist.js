@@ -1,13 +1,15 @@
 initPlaylistGrid = function(paneRef) {
 
   //attach a grid to the pane
-  var gridRef = paneRef.attachGrid();
+  gridRef = paneRef.attachGrid();
   //tell the grid what colum headers to use
   gridRef.setHeader("Name, Length, Total Time");
   //tell the grid array indexes that correspond to the colum heders
   gridRef.setColumnIds("name", "playTime", "totalTime");
   //tell the grid where it's images are located
   gridRef.setImagePath("dhx_skins/skyblue/imgs/dhxgrid_skyblue");
+  //tell the grid to allow multiselect
+  gridRef.enableMultiselect(true);
   //tell the grid that we're done preconfiguring it
   gridRef.init();
 
@@ -20,15 +22,21 @@ initPlaylistGrid = function(paneRef) {
     //ideally this should be done in a way that doesn't block the ui
     Tracker.autorun(function() {
 
+      //get the open playlist session variable
       var openPlaylistID = Session.get('openPlaylistID');
 
-      //update the UI if there is indeed an open playlist
-      if (openPlaylistID !== null) {
-
+      //is there a playlist selected, or do we need to just clear the ui
+      if (openPlaylistID === 'null') {
+        //reset the playlist selector dropdown
+        toolBarRef.setItemText('Choose Playlist');
+        //clear the existing data from the grid
+        gridRef.clearAll();
+      }
+      else {
         //Get the playlist from the db
         var openPlaylist = playlistsCollection.findOne({'_id': openPlaylistID});
 
-        //Set the title of the pane
+        //Set the title of the the playlist selector dropdowm
         toolBarRef.setItemText(ptbIDs.plistChoose, openPlaylist.name);
 
         //create a data object in the format that dhtmlxGrid wants

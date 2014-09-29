@@ -25,7 +25,7 @@ initScheduler = function(paneRef) {
         event.start_date = time.format("DD/MM/YYYY H:m:s");
 
         //map end_date (just a shim for right now)
-        time.add(1, 'minutes');
+        time.add(1, 'hours');
         event.end_date = time.format("DD/MM/YYYY H:m:s");
 
         //return

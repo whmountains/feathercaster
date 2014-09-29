@@ -14,3 +14,5 @@ Meteor.methods({
             return event_id;
         }
 });
+
+//127.0.0.1:3001/meteor

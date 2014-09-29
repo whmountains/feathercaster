@@ -1,0 +1,44 @@
+{
+  "dependencies": {
+    "agenda": {
+      "version": "0.6.19",
+      "dependencies": {
+        "human-interval": {
+          "version": "0.1.4"
+        },
+        "date.js": {
+          "version": "0.2.0",
+          "dependencies": {
+            "debug": {
+              "version": "0.7.4"
+            }
+          }
+        },
+        "mongoskin": {
+          "version": "1.4.4",
+          "dependencies": {
+            "mongodb": {
+              "version": "1.4.4",
+              "dependencies": {
+                "bson": {
+                  "version": "0.2.8",
+                  "dependencies": {
+                    "nan": {
+                      "version": "1.0.0"
+                    }
+                  }
+                },
+                "kerberos": {
+                  "version": "0.0.3"
+                }
+              }
+            }
+          }
+        },
+        "cron": {
+          "version": "1.0.5"
+        }
+      }
+    }
+  }
+}

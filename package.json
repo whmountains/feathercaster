@@ -1,0 +1,38 @@
+{
+  "name": "feathercaster",
+  "version": "0.5.0",
+  "description": "Lightweight radio automation",
+  "main": "app.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/whmountains/feathercaster.git"
+  },
+  "keywords": [
+    "radio",
+    "music",
+    "player",
+    "automation",
+    "vlc",
+    "scheduler",
+    "audio"
+  ],
+  "author": "whmountains",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/whmountains/feathercaster/issues"
+  },
+  "homepage": "https://github.com/whmountains/feathercaster",
+  "dependencies": {
+    "browserify": "^6.3.3",
+    "express": "^4.10.4",
+    "jquery": "^2.1.1",
+    "lodash": "^2.4.1",
+    "react": "^0.12.1",
+    "socket.io": "^1.2.1",
+    "typeahead.js": "^0.10.5"
+  }
+}

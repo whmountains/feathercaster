@@ -5,7 +5,11 @@
   "main": "app.js",
   "scripts": {
     "test": "node test.js",
-    "start": "node app.js"
+    "jsxwatch": "jsx --watch client/ client_c/",
+    "autobundle": "watchify client_c/main.js -o public/js/bundle.js",
+    "start": "node app.js",
+    "bundle": "jsx client/ client_c/ && browserify client_c/main.js -o public/js/bundle.js -d",
+    "debug": "node --debug-brk app.js"
   },
   "repository": {
     "type": "git",
@@ -27,12 +31,19 @@
   },
   "homepage": "https://github.com/whmountains/feathercaster",
   "dependencies": {
+    "async": "^0.9.0",
     "browserify": "^6.3.3",
+    "debug": "^2.1.0",
     "express": "^4.10.4",
+    "flux": "^2.0.1",
+    "flux-dispatcher": "^1.0.4",
+    "flux-store": "^1.1.2",
+    "fpcalc": "^1.1.1",
     "jquery": "^2.1.1",
     "lodash": "^2.4.1",
     "react": "^0.12.1",
     "socket.io": "^1.2.1",
+    "socket.io-client": "^1.2.1",
     "typeahead.js": "^0.10.5"
   }
 }
